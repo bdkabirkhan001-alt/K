@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrimeShots Web Series Collection - Xmaal Zmaal Xmaza Xmasti</title>
+    <meta name="description" content="Watch and explore latest ULLU web series, trending show episodes, and exclusive ad-free updates.">
+    <meta name="keywords" content="ULLU Web Series, ULLU Trending Series, Watch ULLU Online, ULLU Latest Episodes">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
+        body { background-color: #0f172a; color: #f8fafc; padding: 20px; }
+        
+        .container { max-width: 1000px; margin: 0 auto; }
+        
+        header { text-align: center; margin-bottom: 25px; }
+        h1 { color: #e11d48; font-size: 2.2rem; text-transform: uppercase; margin-bottom: 10px; }
+        p.subtitle { color: #94a3b8; font-size: 0.95rem; }
+
+        .search-box {
+            margin: 20px 0 30px 0;
+            display: flex;
+            justify-content: center;
+        }
+        .search-box input {
+            width: 100%;
+            max-width: 500px;
+            padding: 14px 20px;
+            font-size: 1rem;
+            border-radius: 30px;
+            border: 2px solid #334155;
+            background-color: #1e293b;
+            color: #fff;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .search-box input:focus { border-color: #e11d48; }
+
+        .series-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: #1e293b;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s;
+        }
+        .card:hover { transform: translateY(-5px); }
+
+        .card img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            background-color: #334155;
+        }
+
+        .card-details {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #f1f5f9;
+        }
+
+        .watch-btn {
+            display: block;
+            text-align: center;
+            background: linear-gradient(90deg, #e11d48, #be123c);
+            color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .no-results, .loading {
+            text-align: center;
+            grid-column: 1 / -1;
+            color: #64748b;
+            font-size: 1.1rem;
+            padding: 40px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>PrimeShots Web Series Collection</h1>
+            <p class="subtitle">Search and watch latest PrimeShots original web series ad-free</p>
+        </header>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" onkeyup="filterSeries()" placeholder="Search web series name...">
+        </div>
+
+        <div class="series-grid" id="seriesGrid">
+            <div class="loading">Loading series data...</div>
+        </div>
+        <div class="no-results" id="noResults" style="display: none;">No series found matching your search.</div>
+    </div>
+
+    <script>
+        // Fetch external data.json file
+        fetch('../json/ullu.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("HTTP error " + response.status);
+                }
+                return response.json();
+            })
+            .then(seriesData => {
+                loadSeries(seriesData);
+            })
+            .catch(error => {
+                console.error('Error fetching JSON:', error);
+                document.getElementById('seriesGrid').innerHTML = `<div class="loading">Failed to load data. Make sure data.json exists.</div>`;
+            });
+
+        // Render Cards
+        function loadSeries(data) {
+            const grid = document.getElementById('seriesGrid');
+            grid.innerHTML = '';
+
+            data.forEach(item => {
+                const cardHtml = `
+                    <div class="card" data-title="${item.title.toLowerCase()}">
+                        <img src="${item.thumbnail}" alt="${item.title}" loading="lazy">
+                        <div class="card-details">
+                            <div class="card-title">${item.title}</div>
+                            <a href="${item.link}" target="_blank" class="watch-btn">Watch Now / देखें</a>
+                        </div>
+                    </div>
+                `;
+                grid.innerHTML += cardHtml;
+            });
+        }
+
+        // Live Search Filter
+        function filterSeries() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.card');
+            let hasMatch = false;
+
+            cards.forEach(card => {
+                const title = card.getAttribute('data-title');
+                if (title.includes(query)) {
+                    card.style.display = 'flex';
+                    hasMatch = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            document.getElementById('noResults').style.display = hasMatch ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>
