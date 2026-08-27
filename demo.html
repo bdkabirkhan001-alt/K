@@ -3,222 +3,162 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Web Series Player</title>
+  <title>NeonX Code Generator</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color: #080810; color: #fff; min-height: 100vh; padding: 20px; display: flex; justify-content: center; align-items: center; }
 
-    body {
-      background-color: #0f1015;
-      color: #ffffff;
-      display: flex;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .container {
+    .generator-card {
       width: 100%;
-      max-width: 1100px;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-
-    @media (min-width: 850px) {
-      .container {
-        grid-template-columns: 2.5fr 1fr;
-      }
-    }
-
-    /* Main Player Section */
-    .player-section {
-      background: #181920;
+      max-width: 700px;
+      background-color: #0f111e;
       border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      padding: 24px;
+      border: 1px solid #1e2238;
+      box-shadow: 0 0 25px rgba(0, 242, 254, 0.15);
     }
 
-    .video-wrapper {
-      position: relative;
-      padding-top: 56.25%; /* 16:9 Aspect Ratio */
-      background: #000;
+    h2 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      text-align: center;
+      background: linear-gradient(45deg, #ff007f, #00f2fe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    .video-wrapper video {
-      position: absolute;
-      top: 0;
-      left: 0;
+    .form-group { margin-bottom: 16px; }
+    label { display: block; margin-bottom: 6px; font-size: 14px; color: #aaa; }
+    
+    input[type="text"] {
       width: 100%;
-      height: 100%;
+      padding: 10px 14px;
+      background-color: #121422;
+      border: 1px solid #232742;
+      border-radius: 8px;
+      color: #fff;
+      outline: none;
+    }
+    input[type="text"]:focus { border-color: #00f2fe; }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(45deg, #ff007f, #00f2fe);
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 15px;
+      margin-top: 10px;
+    }
+
+    .output-group { margin-top: 24px; display: none; }
+    
+    textarea {
+      width: 100%;
+      height: 220px;
+      background-color: #05060a;
+      border: 1px solid #232742;
+      border-radius: 8px;
+      color: #00f2fe;
+      padding: 12px;
+      font-family: monospace;
+      font-size: 12px;
+      resize: none;
       outline: none;
     }
 
-    .video-info {
-      padding: 20px;
-    }
-
-    .series-title {
-      font-size: 22px;
-      color: #e50914;
-      margin-bottom: 5px;
-    }
-
-    .current-episode {
-      font-size: 16px;
-      color: #aaaaaa;
-    }
-
-    /* Episode List Section */
-    .playlist-section {
-      background: #181920;
-      border-radius: 12px;
-      padding: 15px;
-      max-height: 600px;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .playlist-title {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 15px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #2a2b36;
-      color: #fff;
-    }
-
-    .episode-list {
-      list-style: none;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    /* Scrollbar style */
-    .episode-list::-webkit-scrollbar {
-      width: 6px;
-    }
-    .episode-list::-webkit-scrollbar-thumb {
-      background: #333;
-      border-radius: 10px;
-    }
-
-    .episode-item {
-      padding: 12px 15px;
-      background: #222430;
-      border-radius: 8px;
+    .copy-btn {
+      background-color: #1a1c2e;
+      border: 1px solid #00f2fe;
+      color: #00f2fe;
+      padding: 8px 16px;
+      border-radius: 6px;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: all 0.2s ease;
-    }
-
-    .episode-item:hover {
-      background: #2e3142;
-    }
-
-    .episode-item.active {
-      background: #e50914;
-      color: #fff;
-    }
-
-    .episode-item .ep-num {
-      font-size: 14px;
-      font-weight: 600;
+      margin-top: 8px;
+      float: right;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <!-- Video Player -->
-    <div class="player-section">
-      <div class="video-wrapper">
-        <video id="mainPlayer" controls autoplay poster="">
-          <source id="videoSource" src="" type="video/mp4">
-          Your browser does not support HTML5 video.
-        </video>
-      </div>
-      <div class="video-info">
-        <h1 class="series-title" id="seriesName">Web Series Name</h1>
-        <p class="current-episode" id="epTitle">Select an Episode</p>
-      </div>
+  <div class="generator-card">
+    <h2>NeonX HTML Code Generator</h2>
+    
+    <div class="form-group">
+      <label for="videoTitle">Video Title:</label>
+      <input type="text" id="videoTitle" placeholder="যেমন: Hindi Hot Web Series Episode 1">
     </div>
 
-    <!-- Episode List -->
-    <div class="playlist-section">
-      <div class="playlist-title">All Episodes</div>
-      <ul class="episode-list" id="episodeContainer"></ul>
+    <div class="form-group">
+      <label for="videoLink">Video Link (MP4):</label>
+      <input type="text" id="videoLink" placeholder="যেমন: https://example.com/video.mp4">
+    </div>
+
+    <button class="btn" onclick="generateCode()">Generate HTML Code</button>
+
+    <div class="output-group" id="outputGroup">
+      <label>Generated Code:</label>
+      <textarea id="codeOutput" readonly></textarea>
+      <button class="copy-btn" onclick="copyCode()" id="copyBtn">Copy Code</button>
     </div>
   </div>
 
   <script>
-    // 1. Series details r Episode Link-gulo ekhane add koro
-    const seriesData = {
-      title: "Money Heist (Season 1)",
-      episodes: [
-        { ep: 1, name: "Episode 1", url: "https://www.w3schools.com/html/mov_bbb.mp4" },
-        { ep: 2, name: "Episode 2", url: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" },
-        { ep: 3, name: "Episode 3", url: "https://www.w3schools.com/html/mov_bbb.mp4" },
-        { ep: 4, name: "Episode 4", url: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" },
-        // Ekhane ichhamoto aro episode add korte paro:
-        // { ep: 5, name: "Episode 5", url: "YOUR_MP4_LINK_HERE" },
-      ]
-    };
+    function generateCode() {
+      const title = document.getElementById('videoTitle').value.trim();
+      const link = document.getElementById('videoLink').value.trim();
 
-    // DOM Elements
-    const player = document.getElementById('mainPlayer');
-    const source = document.getElementById('videoSource');
-    const seriesName = document.getElementById('seriesName');
-    const epTitle = document.getElementById('epTitle');
-    const episodeContainer = document.getElementById('episodeContainer');
-
-    // Load Series Title
-    seriesName.innerText = seriesData.title;
-
-    // Generate Episode List
-    function renderEpisodes() {
-      episodeContainer.innerHTML = "";
-      
-      seriesData.episodes.forEach((item, index) => {
-        const li = document.createElement('li');
-        li.className = `episode-item ${index === 0 ? 'active' : ''}`;
-        li.innerHTML = `<span class="ep-num">Episode ${item.ep}</span> <span>${item.name}</span>`;
-        
-        li.onclick = () => playEpisode(index, li);
-        episodeContainer.appendChild(li);
-      });
-
-      // Play First Episode on Load
-      if (seriesData.episodes.length > 0) {
-        loadVideo(0);
+      if (!title || !link) {
+        alert("দয়া করে Title এবং Video Link দুটোই দিন!");
+        return;
       }
+
+      // Template HTML Generation
+      const generatedHtml = `<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${title}</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color: #080810; color: #fff; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 16px; }
+    .player-card { width: 100%; max-width: 900px; background-color: #0f111e; border-radius: 12px; overflow: hidden; border: 1px solid #1e2238; box-shadow: 0 0 25px rgba(0, 242, 254, 0.15); }
+    .video-wrapper { position: relative; width: 100%; padding-top: 56.25%; background-color: #000; }
+    .video-wrapper video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; outline: none; }
+    .video-details { padding: 20px; }
+    .video-title { font-size: 20px; font-weight: 700; color: #fff; line-height: 1.4; }
+  </style>
+</head>
+<body>
+  <div class="player-card">
+    <div class="video-wrapper">
+      <video controls autoplay playsinline src="${link}"></video>
+    </div>
+    <div class="video-details">
+      <h1 class="video-title">${title}</h1>
+    </div>
+  </div>
+</body>
+</html>`;
+
+      document.getElementById('codeOutput').value = generatedHtml;
+      document.getElementById('outputGroup').style.display = 'block';
     }
 
-    // Play Selected Episode
-    function playEpisode(index, element) {
-      document.querySelectorAll('.episode-item').forEach(el => el.classList.remove('active'));
-      element.classList.add('active');
-      loadVideo(index);
+    function copyCode() {
+      const codeOutput = document.getElementById('codeOutput');
+      codeOutput.select();
+      document.execCommand('copy');
+      
+      const copyBtn = document.getElementById('copyBtn');
+      copyBtn.innerText = "Copied!";
+      setTimeout(() => { copyBtn.innerText = "Copy Code"; }, 2000);
     }
-
-    function loadVideo(index) {
-      const selectedEp = seriesData.episodes[index];
-      source.src = selectedEp.url;
-      epTitle.innerText = `Playing: Episode ${selectedEp.ep} - ${selectedEp.name}`;
-      player.load();
-      player.play();
-    }
-
-    // Initialize
-    renderEpisodes();
   </script>
 
 </body>
-  </html>
+</html>
