@@ -83,7 +83,7 @@
     const container = document.getElementById('videoContainer');
 
     // Fetching external JSON file
-    fetch('data.json')
+    fetch('../json/NeonX.json')
       .then(response => response.json())
       .then(videoData => {
         videoData.forEach(item => {
