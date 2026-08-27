@@ -71,7 +71,7 @@
 
     // External JSON File Load (Fetch API)
     // JSON ফাইল অন্য কোনো সার্ভার/লিঙ্কে থাকলে 'data.json' এর জায়গায় পুরো URL (যেমন: https://example.com/api.json) দিন
-    fetch('data.json')
+    fetch('../json/english.json')
       .then(response => response.json())
       .then(videoData => {
         videoData.forEach(item => {
