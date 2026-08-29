@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Player</title>
+    <!-- Hotlink / Referrer block bypass korar jonno -->
+    <meta name="referrer" content="no-referrer">
+    <title>HLS Video Player</title>
+    <!-- HLS.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <style>
         * {
             box-sizing: border-box;
@@ -55,15 +59,27 @@
 
     <div class="player-card">
         <div class="video-container">
-            <video controls preload="metadata" poster="">
-                <source src="https://files.klubnichka-hd.com/newvideofile3/october26_2/Brazzers%20Exxtra%20-%20Martina%20Smeraldi%20%26%20Alanna%20Pow%20-%20Fiending%20For%20A%20Threesome.mp4" type="video/mp4">
-                Apnar browser video tag support kore na.
-            </video>
+            <video id="video" controls preload="auto"></video>
         </div>
         <div class="info-panel">
-            <h1 class="title">Brazzers Exxtra - Martina Smeraldi & Alanna Pow - Fiending For A Threesome</h1>
+            <h1 class="title">Brazzers Bigger And Better - The Best Of Big Naturals Vol 2</h1>
         </div>
     </div>
+
+    <script>
+        var video = document.getElementById('video');
+        var videoSrc = 'https://player2.cdnlivestream.xyz/videos/Brazzers-Bigger-And-Better-The-Best-Of-Big-Naturals-Vol-2/video.m3u8';
+
+        if (Hls.isSupported()) {
+            var hls = new Hls();
+            hls.loadSource(videoSrc);
+            hls.attachMedia(video);
+        }
+        // Native HLS support (Safari browser-er jonno)
+        else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = videoSrc;
+        }
+    </script>
 
 </body>
 </html>
