@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hindi Chudai Kahani | Hindi Sex Story | Chudai Kahani</title>
+    <meta name="description" content="Hindi Chudai Kahani, Hindi Sex Story, Desi Chudai Kahani, Adult Hindi Stories. সবচেয়ে হট হিন্দি চুদাই গল্প পড়ো।">
+    <meta name="keywords" content="Hindi Chudai Kahani, Hindi Sex Story, Chudai Kahani, Desi Sex Story, Hindi Adult Story, चुदाई कहानी, सेक्स स्टोरी">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0f0f0f;
+            color: #f1f1f1;
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(135deg, #8b0000, #1a0000);
+            padding: 20px 15px;
+            text-align: center;
+            border-bottom: 3px solid #ff4444;
+        }
+        header h1 {
+            font-size: 1.8rem;
+            color: #fff;
+            text-shadow: 0 0 10px #ff0000;
+        }
+        header p {
+            color: #ffaaaa;
+            margin-top: 5px;
+            font-size: 0.95rem;
+        }
+        .video-btn {
+            display: inline-block;
+            margin-top: 15px;
+            background: #ff0000;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 0 15px rgba(255,0,0,0.6);
+            transition: 0.3s;
+        }
+        .video-btn:hover {
+            background: #cc0000;
+            transform: scale(1.05);
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px 15px;
+        }
+        .section-title {
+            font-size: 1.4rem;
+            margin: 25px 0 15px;
+            color: #ff6666;
+            border-left: 4px solid #ff4444;
+            padding-left: 12px;
+        }
+        .story-card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 18px;
+            margin-bottom: 15px;
+            transition: 0.3s;
+        }
+        .story-card:hover {
+            border-color: #ff4444;
+            background: #222;
+        }
+        .story-card h3 {
+            color: #ff8888;
+            margin-bottom: 8px;
+            font-size: 1.15rem;
+        }
+        .story-card p {
+            color: #ccc;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+        .story-card a {
+            display: inline-block;
+            background: #8b0000;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .story-card a:hover {
+            background: #a00000;
+        }
+        .tags {
+            margin-top: 25px;
+            text-align: center;
+        }
+        .tag {
+            display: inline-block;
+            background: #333;
+            color: #ffaaaa;
+            padding: 5px 12px;
+            margin: 4px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        footer {
+            text-align: center;
+            padding: 25px 15px;
+            color: #777;
+            font-size: 0.85rem;
+            border-top: 1px solid #333;
+            margin-top: 30px;
+        }
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #ff6666;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🔥 Hindi Chudai Kahani 🔥</h1>
+    <p>Hot Hindi Sex Stories • Desi Chudai Kahaniyaan</p>
+    <a href="https://indiapornfilm.com/" target="_blank" class="video-btn">
+        ▶️ Watch Sex Videos
+    </a>
+</header>
+
+<div class="container">
+    <h2 class="section-title">📖 Latest Chudai Kahaniyaan</h2>
+    
+    <div id="stories-container">
+        <div class="loading">Loading stories...</div>
+    </div>
+
+    <div class="tags">
+        <span class="tag">Hindi Chudai Kahani</span>
+        <span class="tag">Hindi Sex Story</span>
+        <span class="tag">Desi Sex Story</span>
+        <span class="tag">Chudai Kahani</span>
+        <span class="tag">Adult Hindi Story</span>
+        <span class="tag">चुदाई कहानी</span>
+        <span class="tag">सेक्स स्टोरी</span>
+    </div>
+</div>
+
+<footer>
+    © 2026 Hindi Chudai Kahani • All stories are fictional adult content<br>
+    18+ Only
+</footer>
+
+<script>
+    fetch('data/stories.json')
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById('stories-container');
+            container.innerHTML = '';
+
+            data.stories.forEach(story => {
+                const card = document.createElement('div');
+                card.className = 'story-card';
+                card.innerHTML = `
+                    <h3>${story.title}</h3>
+                    <p>${story.excerpt}</p>
+                    <a href="${story.link}">Read Full Story →</a>
+                `;
+                container.appendChild(card);
+            });
+        })
+        .catch(err => {
+            document.getElementById('stories-container').innerHTML = 
+                '<p style="color:#ff6666;text-align:center;">Failed to load stories</p>';
+            console.error(err);
+        });
+</script>
+
+</body>
+  </html>
