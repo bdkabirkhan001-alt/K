@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h3>Link Generator</h3>
+  <input type="text" id="video" placeholder="Video Link"><br><br>
+  <input type="text" id="referer" placeholder="Referer Link"><br><br>
+  <button onclick="makeUrl()">Generate</button>
+
+  <h4>Result:</h4>
+  <textarea id="result" rows="4" cols="50"></textarea>
+
+  <script>
+    function makeUrl() {
+      const worker = "https://my-worker.workers.dev/?url=";
+      const video = document.getElementById('video').value;
+      const referer = document.getElementById('referer').value;
+      
+      let finalLink = worker + encodeURIComponent(video);
+      if(referer) {
+        finalLink += "&referer=" + encodeURIComponent(referer);
+      }
+      document.getElementById('result').value = finalLink;
+    }
+  </script>
+</body>
+</html>
