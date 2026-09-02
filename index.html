@@ -1,116 +1,365 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xmaal Zmaal Xmaza Xmasti - Trending OTT Streams & Videos</title>
-    <link rel="icon" href="favicon.png" type="image/png">
-    <meta property="og:title" content="Xmaal Zmaal Xmaza Xmasti - Trending OTT Stream & Videos">
-    <meta property="og:site_name" content="Xmaal Zmaal Xmaza Xmasti">
-    <meta property="og:description" content="Explore trending content...">
-    <meta name="description" content="Explore trending movies, web series, and content from top OTT platforms ad-free on Xmaal Zmaal Xmaza Xmasti.">
-    <meta name="keywords" content="Xmaal Zmaal, Xmaza, Xmasti, Ullu, Prime Shots, Hunters, Kooku, Hindi Web Series">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #0f172a; color: #f8fafc; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
-        .container { max-width: 750px; background: #1e293b; padding: 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
-        h1 { color: #ef4444; font-size: 2.2rem; margin-bottom: 20px; text-align: center; text-transform: uppercase; }
-        .seo-post { background: #334155; padding: 20px; border-radius: 8px; margin-bottom: 25px; line-height: 1.6; }
-        .seo-post h2 { color: #f59e0b; font-size: 1.3rem; margin-bottom: 10px; }
-        
-        .btn-container { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 12px; 
-            align-items: center; 
-            margin: 25px 0; 
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xmaal Zmaal Xmaza Xmasti - Trending OTT Streams & Videos</title>
+  <link rel="icon" href="favicon.png" type="image/png">
+  
+  <meta property="og:title" content="Xmaal Zmaal Xmaza Xmasti - Trending OTT Stream & Videos">
+  <meta property="og:site_name" content="Xmaal Zmaal Xmaza Xmasti">
+  <meta property="og:description" content="Explore trending content...">
+  <meta name="description" content="Explore trending movies, web series, and content from top OTT platforms ad-free on Xmaal Zmaal Xmaza Xmasti.">
+  <meta name="keywords" content="Xmaal Zmaal, Xmaza, Xmasti, Ullu, Prime Shots, Hunters, Kooku, Hindi Web Series">
 
-        .ott-btn { 
-            display: inline-flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%; 
-            max-width: 400px; 
-            color: #fff; 
-            font-size: 1.1rem; 
-            font-weight: bold; 
-            padding: 14px 25px; 
-            border-radius: 30px; 
-            text-decoration: none; 
-            transition: transform 0.2s, box-shadow 0.2s; 
-        }
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --accent: #ef4444;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
 
-        /* Platform Color Styles */
-        .ullu { background: linear-gradient(90deg, #e11d48, #be123c); box-shadow: 0 4px 15px rgba(225, 29, 72, 0.3); }
-        .primeshots { background: linear-gradient(90deg, #2563eb, #1d4ed8); box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3); }
-        .hunters { background: linear-gradient(90deg, #d97706, #b45309); box-shadow: 0 4px 15px rgba(217, 119, 6, 0.3); }
-        .kooku { background: linear-gradient(90deg, #059669, #047857); box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3); }
-        .altbalaji { background: linear-gradient(90deg, #7c3aed, #6d28d9); box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3); }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-        .ott-btn:hover { transform: scale(1.03); }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 20px 16px 60px;
+    }
 
-        .faq-section { background: #334155; padding: 20px; border-radius: 8px; margin-top: 25px; }
-        .faq-section h3 { color: #38bdf8; font-size: 1.2rem; margin-bottom: 15px; }
-        .faq-item { margin-bottom: 15px; }
-        .faq-item h4 { color: #f1f5f9; font-size: 1rem; margin-bottom: 5px; }
-        .faq-item p { color: #cbd5e1; font-size: 0.95rem; line-height: 1.5; }
-    </style>
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding-top: 10px;
+    }
+
+    .header h1 {
+      color: #ef4444;
+      font-size: clamp(1.6rem, 5vw, 2.2rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    /* Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.28s ease;
+      border: 1px solid transparent;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(239, 68, 68, 0.45);
+      box-shadow: 0 18px 35px -10px rgba(239, 68, 68, 0.25);
+    }
+
+    .card img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .card:hover img {
+      transform: scale(1.05);
+    }
+
+    .card-body {
+      padding: 14px 16px 18px;
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-meta {
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .badge {
+      background: rgba(239, 68, 68, 0.18);
+      color: #f87171;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+
+    /* Loading */
+    .loading {
+      text-align: center;
+      padding: 80px 20px;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    .spinner {
+      width: 42px;
+      height: 42px;
+      border: 3px solid #1e293b;
+      border-top-color: #ef4444;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 16px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(6px);
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+      padding: 20px;
+    }
+
+    .modal {
+      background: #1e293b;
+      padding: 28px 24px;
+      border-radius: 16px;
+      text-align: center;
+      max-width: 380px;
+      width: 100%;
+      border: 1px solid #334155;
+      animation: modalIn 0.3s ease;
+    }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.92) translateY(15px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .modal h3 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .modal p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+
+    .watch-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 13px 20px;
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: all 0.25s ease;
+    }
+
+    .watch-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px -5px rgba(239, 68, 68, 0.4);
+    }
+
+    .close-btn {
+      margin-top: 14px;
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 0.95rem;
+      width: 100%;
+      padding: 8px;
+    }
+
+    .close-btn:hover {
+      color: #fff;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 14px;
+      }
+      .card img {
+        height: 135px;
+      }
+      .card-title {
+        font-size: 13.5px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Xmaal Zmaal Xmaza Xmasti</h1>
+  <div class="header">
+    <h1>Xmaal Zmaal Xmaza Xmasti</h1>
+    <p>Trending OTT Web Series & Videos</p>
+  </div>
 
-        <div class="seo-post">
-            <h2>Watch Top OTT Platforms Content</h2>
-            <p>
-                Welcome to <strong>Xmaal Zmaal Xmaza Xmasti</strong>. Get direct access to trending web series, latest episodes, and movie updates from your favorite OTT platforms without unwanted ads. Choose your preferred platform below to start watching.
-            </p>
-        </div>
+  <div id="loading" class="loading">
+    <div class="spinner"></div>
+    Loading latest videos...
+  </div>
 
-        <!-- OTT Buttons Section -->
-        <div class="btn-container">
-            <a href="https://indiapornfilm.com/" class="ott-btn ullu" target="_blank">
-                <span>ULLU Official / उल्लू</span>
-                <span>Watch →</span>
-            </a>
-            
-            <a href="https://indiapornfilm.com/" class="ott-btn primeshots" target="_blank">
-                <span>PrimeShots / प्राइमशॉट्स</span>
-                <span>Watch →</span>
-            </a>
+  <div class="grid" id="video-grid" style="display:none;"></div>
 
-            <a href="https://indiapornfilm.com/" class="ott-btn hunters" target="_blank">
-                <span>NeonX</span>
-                <span>Watch →</span>
-            </a>
-
-            <a href="https://indiapornfilm.com/" class="ott-btn kooku" target="_blank">
-                <span>Other Web Series</span>
-                <span>Watch →</span>
-            </a>
-
-            <a href="https://indiapornfilm.com/" class="ott-btn altbalaji" target="_blank">
-                <span>Porn Videos</span>
-                <span>Watch →</span>
-            </a>
-        </div>
-
-        <div class="faq-section">
-            <h3>Frequently Asked Questions (FAQ)</h3>
-            <div class="faq-item">
-                <h4>1. What content is available on Xmaal Zmaal Xmaza Xmasti?</h4>
-                <p>You can find direct links and streaming updates for popular web series from ULLU, PrimeShots, Hunters, and other trending OTT platforms.</p>
-            </div>
-            <div class="faq-item">
-                <h4>2. Is it fast and ad-free?</h4>
-                <p>Yes, all platform links are optimized for high-speed redirection and smooth browsing.</p>
-            </div>
-        </div>
+  <!-- Modal -->
+  <div class="modal-overlay" id="modal">
+    <div class="modal">
+      <h3 id="modal-title"></h3>
+      <p>Click below to watch the full video</p>
+      <a href="#" id="watch-now-btn" class="watch-btn" target="_blank" rel="noopener">▶ Watch Now</a>
+      <button class="close-btn" onclick="closeModal()">Cancel</button>
     </div>
-<script src="https://pl31077926.profitableratecpmnetwork.com/12/75/71/127571fc6b20eedf9d43339e4f50eeeb.js"></script>
-    
-</body>
+  </div>
 
+  <script>
+    // ⬇️ এখানে আপনার WordPress সাইটের URL দিন
+    const WP_SITE_URL = 'https://indiapornfilm.com';
+
+    async function fetchVideos() {
+      const loading = document.getElementById('loading');
+      const grid = document.getElementById('video-grid');
+
+      try {
+        const response = await fetch(`${WP_SITE_URL}/wp-json/wp/v2/posts?_embed&per_page=50&orderby=date&order=desc`);
+        if (!response.ok) throw new Error('API error');
+
+        const posts = await response.json();
+
+        if (!posts.length) {
+          loading.innerHTML = 'No videos found.';
+          return;
+        }
+
+        posts.forEach(post => {
+          let thumbnail = null;
+
+          // Featured Image
+          if (post._embedded?.['wp:featuredmedia']?.[0]?.source_url) {
+            thumbnail = post._embedded['wp:featuredmedia'][0].source_url;
+          }
+
+          // Content থেকে প্রথম ছবি
+          if (!thumbnail && post.content?.rendered) {
+            const imgMatch = post.content.rendered.match(/<img[^>]+src="([^">]+)"/);
+            if (imgMatch) thumbnail = imgMatch[1];
+          }
+
+          // Fallback
+          if (!thumbnail) {
+            thumbnail = 'https://placehold.co/400x230/1e293b/94a3b8?text=No+Image';
+          }
+
+          // Relative URL fix
+          if (thumbnail.startsWith('/')) {
+            thumbnail = WP_SITE_URL + thumbnail;
+          }
+
+          const title = post.title.rendered.replace(/&#(\d+);/g, (m, n) => String.fromCharCode(n));
+          const link = post.link;
+          const date = new Date(post.date).toLocaleDateString('en-IN', {
+            day: 'numeric', month: 'short', year: 'numeric'
+          });
+
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML = `
+            <img src="${thumbnail}" 
+                 alt="${title}" 
+                 loading="lazy"
+                 onerror="this.src='https://placehold.co/400x230/1e293b/94a3b8?text=Image+Error'">
+            <div class="card-body">
+              <div class="card-title">${title}</div>
+              <div class="card-meta">
+                <span class="badge">NEW</span>
+                <span>${date}</span>
+              </div>
+            </div>
+          `;
+          card.onclick = () => openModal(title, link);
+          grid.appendChild(card);
+        });
+
+        loading.style.display = 'none';
+        grid.style.display = 'grid';
+
+      } catch (err) {
+        console.error(err);
+        loading.innerHTML = `<div style="color:#f87171;">Failed to load videos.<br><small>Check console</small></div>`;
+      }
+    }
+
+    function openModal(title, link) {
+      document.getElementById('modal-title').innerText = title;
+      document.getElementById('watch-now-btn').href = link;
+      document.getElementById('modal').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('modal').addEventListener('click', (e) => {
+      if (e.target.id === 'modal') closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    fetchVideos();
+  </script>
+
+  <!-- আপনার অ্যাড স্ক্রিপ্ট -->
+  <script src="https://pl31077926.profitableratecpmnetwork.com/12/75/71/127571fc6b20eedf9d43339e4f50eeeb.js"></script>
+</body>
 </html>
